@@ -36,6 +36,9 @@ struct LoginView: View {
             .background(Color(.init(white: 0, alpha: 0.03))
                 .ignoresSafeArea())
         }
+        .fullScreenCover(isPresented: $viewModel.shouldShowImagePicker, onDismiss: nil) {
+            ImagePicker(image: $viewModel.image)
+        }
     }
 }
 
@@ -61,11 +64,22 @@ extension LoginView {
     private var imageButton: some View {
         
         Button {
-            
+            viewModel.shouldShowImagePicker
+                .toggle()
         } label: {
-            Image(systemName: "person.fill")
-                .font(.system(size: 64))
-                .padding()
+            VStack {
+                if let image = viewModel.image {
+                    Image(uiImage: image)
+                        .resizable()
+                        .frame(width: 100, height: 100)
+                        .cornerRadius(50)
+                        .shadow(radius: 5)
+                } else {
+                    Image(systemName: "person.fill")
+                        .font(.system(size: 64))
+                        .padding()
+                }
+            }
         }
     }
     

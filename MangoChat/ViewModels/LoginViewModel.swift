@@ -15,6 +15,9 @@ class LoginViewModel: ObservableObject {
     @Published var email = ""
     @Published var password = ""
     @Published var loginStatusMessage = ""
+    
+    @Published var shouldShowImagePicker = false
+    @Published var image: UIImage?
 
     func handleAction() {
         if isLoginMode {
@@ -45,6 +48,31 @@ class LoginViewModel: ObservableObject {
             }
             print("Successfully created user: \(result?.user.uid ?? "")")
             self.loginStatusMessage = "Successfully created user: \(result?.user.uid ?? "")"
+            
+            self.PersistImageToStorage()
+        }
+    }
+    
+    private func PersistImageToStorage() {
+        
+        guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return }
+        let ref = FirebaseManager.shared.storage.reference(withPath: uid)
+        guard let imageData = self.image?.jpegData(compressionQuality: 0.5) else { return }
+        ref.putData(imageData, metadata: nil) { metadata, err in
+            if let err = err {
+                self.loginStatusMessage = "Failed to push image to Storage: \(err)"
+                print("Failed to push image to Storage: \(err)")
+                return
+            }
+            
+            ref.downloadURL { url, err in
+                if let err = err {
+                    self.loginStatusMessage = "Failed to retrieve downloadURL: \(err)"
+                    print("Failed to retrieve downloadURL: \(err)")
+                    return
+                }
+                self.loginStatusMessage = "Successfully stored image with url: \(url?.absoluteString ?? "")"
+            }
         }
     }
 }
