@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct MangoChatApp: App {
+    
+    @StateObject private var viewModel = LoginViewModel()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            LoginView()
+                .environmentObject(viewModel)
         }
     }
 }

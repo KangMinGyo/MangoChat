@@ -11,6 +11,8 @@
 		8CA144A329AF23AC0076B0A7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA144A229AF23AC0076B0A7 /* ContentView.swift */; };
 		8CA144A529AF23AF0076B0A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CA144A429AF23AF0076B0A7 /* Assets.xcassets */; };
 		8CA144A829AF23AF0076B0A7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CA144A729AF23AF0076B0A7 /* Preview Assets.xcassets */; };
+		8CA144B329AF4F890076B0A7 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA144B229AF4F890076B0A7 /* LoginView.swift */; };
+		8CA144B529AF50700076B0A7 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA144B429AF50700076B0A7 /* LoginViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +21,8 @@
 		8CA144A229AF23AC0076B0A7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8CA144A429AF23AF0076B0A7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8CA144A729AF23AF0076B0A7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		8CA144B229AF4F890076B0A7 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		8CA144B429AF50700076B0A7 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +57,8 @@
 			children = (
 				8CA144A029AF23AC0076B0A7 /* MangoChatApp.swift */,
 				8CA144A229AF23AC0076B0A7 /* ContentView.swift */,
+				8CA144AE29AF4F220076B0A7 /* Views */,
+				8CA144AF29AF4F2F0076B0A7 /* ViewModels */,
 				8CA144A429AF23AF0076B0A7 /* Assets.xcassets */,
 				8CA144A629AF23AF0076B0A7 /* Preview Content */,
 			);
@@ -65,6 +71,22 @@
 				8CA144A729AF23AF0076B0A7 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		8CA144AE29AF4F220076B0A7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8CA144B229AF4F890076B0A7 /* LoginView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		8CA144AF29AF4F2F0076B0A7 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				8CA144B429AF50700076B0A7 /* LoginViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,6 +159,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CA144B529AF50700076B0A7 /* LoginViewModel.swift in Sources */,
+				8CA144B329AF4F890076B0A7 /* LoginView.swift in Sources */,
 				8CA144A329AF23AC0076B0A7 /* ContentView.swift in Sources */,
 				8CA144A129AF23AC0076B0A7 /* MangoChatApp.swift in Sources */,
 			);
