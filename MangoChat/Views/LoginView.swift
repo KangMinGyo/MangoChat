@@ -27,10 +27,12 @@ struct LoginView: View {
                         .background(.white)
                     
                     loginButton
+                    Text(viewModel.loginStatusMessage)
+                        .foregroundColor(.red)
                 }
                 .padding()
             }
-            .navigationTitle(viewModel.isLoginMode ? "로그인" : "회원가입")
+            .navigationTitle(viewModel.isLoginMode ? "🥭로그인" : "🥭회원가입")
             .background(Color(.init(white: 0, alpha: 0.03))
                 .ignoresSafeArea())
         }

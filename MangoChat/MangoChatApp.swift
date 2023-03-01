@@ -6,10 +6,12 @@
 //
 
 import SwiftUI
+//import FirebaseCore
 
 @main
 struct MangoChatApp: App {
     
+//    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @StateObject private var viewModel = LoginViewModel()
     
     var body: some Scene {
