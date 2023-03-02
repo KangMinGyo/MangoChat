@@ -72,7 +72,24 @@ class LoginViewModel: ObservableObject {
                     return
                 }
                 self.loginStatusMessage = "Successfully stored image with url: \(url?.absoluteString ?? "")"
+                
+                guard let url = url else { return }
+                self.storeUserInformation(imageProfileURL: url)
             }
         }
     }
-}
+    
+    private func storeUserInformation(imageProfileURL: URL) {
+        guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return }
+        let userData = ["email": self.email, "uid": uid, "profileImageURL": imageProfileURL.absoluteString] //uid를 같이 저장하면 더 편해짐
+        FirebaseManager.shared.fireStore.collection("users") //users라는 컬렉션을 만든다
+            .document(uid).setData(userData) { err in
+                if let err = err {
+                    print(err)
+                    self.loginStatusMessage = "\(err)"
+                    return
+                }
+                print("Success")
+            }
+        }
+    }
