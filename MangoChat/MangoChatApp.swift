@@ -12,12 +12,15 @@ import SwiftUI
 struct MangoChatApp: App {
     
 //    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-    @StateObject private var viewModel = LoginViewModel()
+//    @StateObject private var viewModel = LoginViewModel()
+    @StateObject private var viewModel = MainMessagesViewModel()
     
     var body: some Scene {
         WindowGroup {
-            LoginView()
+            MainMessagesView()
                 .environmentObject(viewModel)
+//            LoginView()
+//                .environmentObject(viewModel)
         }
     }
 }

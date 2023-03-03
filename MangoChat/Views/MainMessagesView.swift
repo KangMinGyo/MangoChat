@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct MainMessagesView: View {
     
@@ -15,6 +16,8 @@ struct MainMessagesView: View {
         NavigationView {
             
             VStack {
+//                Text("User: \(viewModel.chatUser?.uid ?? "")")
+                
                 customNavBar
                 messageView
             }
@@ -40,10 +43,20 @@ extension MainMessagesView {
     
     private var customNavBar: some View {
         HStack(spacing: 16) {
-            Image(systemName: "person.fill")
-                .font(.system(size: 36, weight: .heavy))
+            
+            WebImage(url: URL(string: viewModel.chatUser?.profileImageURL ?? ""))
+                .resizable()
+                .scaledToFill()
+                .frame(width: 44, height: 44)
+                .clipped()
+                .cornerRadius(22)
+                .shadow(radius: 5)
+                .overlay(RoundedRectangle(cornerRadius: 22)
+                    .stroke(Color.gray, lineWidth: 1))
+            
             VStack(alignment: .leading, spacing: 4) {
-                Text("UserName")
+                let email = viewModel.chatUser?.email.replacingOccurrences(of: "@gmail.com", with: "") ?? ""
+                Text("\(email)")
                     .font(.system(size: 24, weight: .bold))
                 HStack(spacing:4) {
                     Circle()

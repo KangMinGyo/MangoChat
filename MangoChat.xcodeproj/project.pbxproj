@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8C4480A029B1C82D003285D1 /* ChatUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C44809F29B1C82D003285D1 /* ChatUser.swift */; };
+		8C4480A329B1D2C9003285D1 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 8C4480A229B1D2C9003285D1 /* SDWebImageSwiftUI */; };
 		8CA144A129AF23AC0076B0A7 /* MangoChatApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA144A029AF23AC0076B0A7 /* MangoChatApp.swift */; };
 		8CA144A329AF23AC0076B0A7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA144A229AF23AC0076B0A7 /* ContentView.swift */; };
 		8CA144A529AF23AF0076B0A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CA144A429AF23AF0076B0A7 /* Assets.xcassets */; };
@@ -24,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8C44809F29B1C82D003285D1 /* ChatUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatUser.swift; sourceTree = "<group>"; };
 		8CA1449D29AF23AC0076B0A7 /* MangoChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MangoChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CA144A029AF23AC0076B0A7 /* MangoChatApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangoChatApp.swift; sourceTree = "<group>"; };
 		8CA144A229AF23AC0076B0A7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -43,6 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C4480A329B1D2C9003285D1 /* SDWebImageSwiftUI in Frameworks */,
 				8CA144C629B05D790076B0A7 /* FirebaseAuth in Frameworks */,
 				8CA144C829B05D790076B0A7 /* FirebaseFirestore in Frameworks */,
 				8CA144CA29B05D790076B0A7 /* FirebaseStorage in Frameworks */,
@@ -52,6 +56,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8C44809E29B1C7E7003285D1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8C44809F29B1C82D003285D1 /* ChatUser.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		8CA1449429AF23AC0076B0A7 = {
 			isa = PBXGroup;
 			children = (
@@ -73,6 +85,7 @@
 			children = (
 				8CA144A029AF23AC0076B0A7 /* MangoChatApp.swift */,
 				8CA144A229AF23AC0076B0A7 /* ContentView.swift */,
+				8C44809E29B1C7E7003285D1 /* Models */,
 				8CA144AE29AF4F220076B0A7 /* Views */,
 				8CA144AF29AF4F2F0076B0A7 /* ViewModels */,
 				8CA144BD29AF7B2A0076B0A7 /* Managers */,
@@ -138,6 +151,7 @@
 				8CA144C529B05D790076B0A7 /* FirebaseAuth */,
 				8CA144C729B05D790076B0A7 /* FirebaseFirestore */,
 				8CA144C929B05D790076B0A7 /* FirebaseStorage */,
+				8C4480A229B1D2C9003285D1 /* SDWebImageSwiftUI */,
 			);
 			productName = MangoChat;
 			productReference = 8CA1449D29AF23AC0076B0A7 /* MangoChat.app */;
@@ -169,6 +183,7 @@
 			mainGroup = 8CA1449429AF23AC0076B0A7;
 			packageReferences = (
 				8CA144C429B05D790076B0A7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				8C4480A129B1D2C9003285D1 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 			);
 			productRefGroup = 8CA1449E29AF23AC0076B0A7 /* Products */;
 			projectDirPath = "";
@@ -200,6 +215,7 @@
 				8CA144B529AF50700076B0A7 /* LoginViewModel.swift in Sources */,
 				8CA144B329AF4F890076B0A7 /* LoginView.swift in Sources */,
 				8CA144BF29AF7B510076B0A7 /* FirebaseManager.swift in Sources */,
+				8C4480A029B1C82D003285D1 /* ChatUser.swift in Sources */,
 				8CA144C129AF89AE0076B0A7 /* ImagePicker.swift in Sources */,
 				8CA144A329AF23AC0076B0A7 /* ContentView.swift in Sources */,
 				8CA144A129AF23AC0076B0A7 /* MangoChatApp.swift in Sources */,
@@ -407,6 +423,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		8C4480A129B1D2C9003285D1 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		8CA144C429B05D790076B0A7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
@@ -418,6 +442,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		8C4480A229B1D2C9003285D1 /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8C4480A129B1D2C9003285D1 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
+		};
 		8CA144C529B05D790076B0A7 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 8CA144C429B05D790076B0A7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
