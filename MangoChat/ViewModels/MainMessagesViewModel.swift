@@ -15,6 +15,8 @@ class MainMessagesViewModel: ObservableObject {
     @Published var chatUser: ChatUser?
     @Published var isUserCurrentlyLoggedOut = false
     
+    @Published var shouldShowNewMessageScreen = false
+    
     init() {
         DispatchQueue.main.async {
             self.isUserCurrentlyLoggedOut = FirebaseManager.shared.auth.currentUser?.uid == nil

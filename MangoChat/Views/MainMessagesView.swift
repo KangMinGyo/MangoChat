@@ -16,8 +16,6 @@ struct MainMessagesView: View {
         NavigationView {
             
             VStack {
-//                Text("User: \(viewModel.chatUser?.uid ?? "")")
-                
                 customNavBar
                 messageView
             }
@@ -134,7 +132,7 @@ extension MainMessagesView {
     
     private var newMessageButton: some View {
         Button {
-            
+            viewModel.shouldShowNewMessageScreen.toggle()
         } label: {
             HStack {
                 Spacer()
@@ -148,6 +146,10 @@ extension MainMessagesView {
             .cornerRadius(32)
             .padding(.horizontal)
             .shadow(radius: 10)
+        }
+        .fullScreenCover(isPresented: $viewModel.shouldShowNewMessageScreen) {
+            NewMessageView()
+                .environmentObject(NewMessageViewModel())
         }
     }
 }
