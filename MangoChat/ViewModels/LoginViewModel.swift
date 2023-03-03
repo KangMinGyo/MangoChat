@@ -18,6 +18,8 @@ class LoginViewModel: ObservableObject {
     
     @Published var shouldShowImagePicker = false
     @Published var image: UIImage?
+    
+//    let didCompleteLoginProcess: () -> ()
 
     func handleAction() {
         if isLoginMode {
@@ -36,10 +38,16 @@ class LoginViewModel: ObservableObject {
             }
             print("Successfully logged in as user: \(result?.user.uid ?? "")")
             self.loginStatusMessage = "Successfully logged in as user: \(result?.user.uid ?? "")"
+            
+            //
         }
     }
     
     func creatNewAccount() {
+        if self.image == nil {
+            self.loginStatusMessage = "You must select an avatar image"
+        }
+        
         FirebaseManager.shared.auth.createUser(withEmail: email, password: password) { result, error in
             if let err = error {
                 print("Failed to cerate user:", err)
@@ -90,6 +98,7 @@ class LoginViewModel: ObservableObject {
                     return
                 }
                 print("Success")
+                
             }
         }
     }

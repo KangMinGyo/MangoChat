@@ -79,7 +79,8 @@ extension MainMessagesView {
         .padding()
         .confirmationDialog("Setting", isPresented: $viewModel.shouldShowLogOutOptions, actions: {
             Button(role: .destructive) {
-                
+                viewModel.signOut()
+                print("Sign Out")
             } label: {
                 Text("Sign Out")
             }
@@ -92,6 +93,13 @@ extension MainMessagesView {
         }, message: {
             Text("What do you want to do?")
         })
+        .fullScreenCover(isPresented: $viewModel.isUserCurrentlyLoggedOut) {
+            LoginView(didCompleteLoginProcess: {
+                self.viewModel.isUserCurrentlyLoggedOut = false
+                self.viewModel.fetchCurrentUser()
+            })
+                .environmentObject(LoginViewModel())
+        }
     }
     
     private var messageView: some View {
