@@ -19,7 +19,11 @@ class LoginViewModel: ObservableObject {
     @Published var shouldShowImagePicker = false
     @Published var image: UIImage?
     
-//    let didCompleteLoginProcess: () -> ()
+    @Published var didCompleteLoginProcess: () -> ()
+    
+    init(didCompleteLoginProcess: @escaping () -> Void) {
+        self.didCompleteLoginProcess = didCompleteLoginProcess
+    }
 
     func handleAction() {
         if isLoginMode {
@@ -39,7 +43,7 @@ class LoginViewModel: ObservableObject {
             print("Successfully logged in as user: \(result?.user.uid ?? "")")
             self.loginStatusMessage = "Successfully logged in as user: \(result?.user.uid ?? "")"
             
-            //
+            self.didCompleteLoginProcess()
         }
     }
     

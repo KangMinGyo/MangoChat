@@ -11,7 +11,7 @@ struct LoginView: View {
     
     @EnvironmentObject private var viewModel: LoginViewModel
     
-    let didCompleteLoginProcess: () -> ()
+//    let didCompleteLoginProcess: () -> ()
     
     var body: some View {
         
@@ -46,10 +46,10 @@ struct LoginView: View {
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView(didCompleteLoginProcess: {
-            
-        })
-            .environmentObject(LoginViewModel())
+        LoginView()
+            .environmentObject(LoginViewModel(didCompleteLoginProcess: {
+                
+            }))
     }
 }
 

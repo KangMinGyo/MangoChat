@@ -94,11 +94,11 @@ extension MainMessagesView {
             Text("What do you want to do?")
         })
         .fullScreenCover(isPresented: $viewModel.isUserCurrentlyLoggedOut) {
-            LoginView(didCompleteLoginProcess: {
-                self.viewModel.isUserCurrentlyLoggedOut = false
-                self.viewModel.fetchCurrentUser()
-            })
-                .environmentObject(LoginViewModel())
+            LoginView()
+                .environmentObject(LoginViewModel(didCompleteLoginProcess: {
+                    self.viewModel.isUserCurrentlyLoggedOut = false
+                    self.viewModel.fetchCurrentUser()
+                }))
         }
     }
     
