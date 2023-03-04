@@ -14,8 +14,9 @@ class MainMessagesViewModel: ObservableObject {
     @Published var errorMessage = ""
     @Published var chatUser: ChatUser?
     @Published var isUserCurrentlyLoggedOut = false
-    
     @Published var shouldShowNewMessageScreen = false
+    @Published var shouldNavigateToChatLogView = false
+
     
     init() {
         DispatchQueue.main.async {

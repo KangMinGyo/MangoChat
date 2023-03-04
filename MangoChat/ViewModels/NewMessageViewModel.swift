@@ -11,10 +11,15 @@ class NewMessageViewModel: ObservableObject {
     
     @Published var users = [ChatUser]()
     @Published var errorMessage = ""
+    @Published var didSelectNewUser: (ChatUser) -> ()
     
-    init() {
+    init(didSelectNewUser: @escaping (ChatUser) -> Void) {
+        self.didSelectNewUser = didSelectNewUser
         fetchAllUsers()
     }
+//    init() {
+//        fetchAllUsers()
+//    }
     
     private func fetchAllUsers() {
         FirebaseManager.shared.fireStore.collection("users")

@@ -36,7 +36,9 @@ struct NewMessageView: View {
 struct NewMessageView_Previews: PreviewProvider {
     static var previews: some View {
         NewMessageView()
-            .environmentObject(NewMessageViewModel())
+            .environmentObject(NewMessageViewModel(didSelectNewUser: { user in
+                print(user.email)
+            }))
 //        MainMessagesView()
 //            .environmentObject(MainMessagesViewModel())
     }
@@ -48,6 +50,7 @@ extension NewMessageView {
         ForEach(viewModel.users) { user in
             Button {
                 presentationMode.wrappedValue.dismiss()
+                viewModel.didSelectNewUser(user)
             } label: {
                 HStack(spacing: 16){
                     WebImage(url: URL(string: user.profileImageURL))

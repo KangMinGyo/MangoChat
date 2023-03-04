@@ -18,6 +18,10 @@ struct MainMessagesView: View {
             VStack {
                 customNavBar
                 messageView
+                
+                NavigationLink("", isActive: $viewModel.shouldNavigateToChatLogView) {
+                    ChatLogView(chatUser: viewModel.chatUser)
+                }
             }
             .overlay(
                 newMessageButton, alignment: .bottom)
@@ -104,22 +108,26 @@ extension MainMessagesView {
         ScrollView {
             ForEach(0..<10, id: \.self) { num in
                 VStack{
-                    HStack(spacing: 16) {
-                        Image(systemName: "person.fill")
-                            .font(.system(size: 32))
-                            .padding(4)
-                            .overlay(RoundedRectangle(cornerRadius: 20)
-                                .stroke(Color.gray, lineWidth: 1))
-                        VStack(alignment: .leading) {
-                            Text("UserName")
-                                .font(.system(size: 16, weight: .bold))
-                            Text("Message sent to user")
-                                .font(.system(size: 14))
-                                .foregroundColor(Color(.lightGray))
+                    NavigationLink {
+                        Text("Destination\(num)")
+                    } label: {
+                        HStack(spacing: 16) {
+                            Image(systemName: "person.fill")
+                                .font(.system(size: 32))
+                                .padding(4)
+                                .overlay(RoundedRectangle(cornerRadius: 20)
+                                    .stroke(Color.gray, lineWidth: 1))
+                            VStack(alignment: .leading) {
+                                Text("UserName")
+                                    .font(.system(size: 16, weight: .bold))
+                                Text("Message sent to user")
+                                    .font(.system(size: 14))
+                                    .foregroundColor(Color(.lightGray))
+                            }
+                            Spacer()
+                            Text("22d") //시간
+                                .font(.system(size: 14, weight: .semibold))
                         }
-                        Spacer()
-                        Text("22d") //시간
-                            .font(.system(size: 14, weight: .semibold))
                     }
                     Divider()
                         .padding(.vertical, 8)
@@ -149,7 +157,11 @@ extension MainMessagesView {
         }
         .fullScreenCover(isPresented: $viewModel.shouldShowNewMessageScreen) {
             NewMessageView()
-                .environmentObject(NewMessageViewModel())
+                .environmentObject(NewMessageViewModel(didSelectNewUser: { user in
+                    print(user.email)
+                    self.viewModel.shouldNavigateToChatLogView.toggle()
+                    viewModel.chatUser = user // ?
+                }))
         }
     }
 }
