@@ -21,6 +21,7 @@ struct MainMessagesView: View {
                 
                 NavigationLink("", isActive: $viewModel.shouldNavigateToChatLogView) {
                     ChatLogView(chatUser: viewModel.chatUser)
+                        .environmentObject(ChatLogViewModel(chatUser: nil))
                 }
             }
             .overlay(

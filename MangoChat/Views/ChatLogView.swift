@@ -9,14 +9,18 @@ import SwiftUI
 
 struct ChatLogView: View {
     
+    @ObservedObject var viewModel: ChatLogViewModel
     let chatUser: ChatUser?
     
-    @State var chatText = ""
+    init(chatUser: ChatUser?) {
+        self.chatUser = chatUser
+        self.viewModel = .init(chatUser: chatUser)
+    }
     
     var body: some View {
         ZStack {
             messagesView
-            
+            Text(viewModel.errorMessage)
             VStack {
                 Spacer()
                 chatBottomBar
@@ -30,9 +34,8 @@ struct ChatLogView: View {
 
 struct ChatLogView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
-            ChatLogView(chatUser: .init(data: ["uid": "7Kha0k7jWidFDWUkhgKDSIAFr0s1", "email": "kang1@gmail.com"]))
-        }
+        MainMessagesView()
+            .environmentObject(MainMessagesViewModel())
     }
 }
 
@@ -42,10 +45,15 @@ extension ChatLogView {
             Image(systemName: "photo.on.rectangle")
                 .font(.system(size: 24))
                 .foregroundColor(Color(.darkGray))
+            ZStack {
+                TextField("Discription", text: $viewModel.chatText)
 //                TextEditor(text: $chatText)
-            TextField("Description", text: $chatText)
+//                    .opacity($chatText.isEmpty ? 0.5 : 1)
+            }
+            .frame(height: 40)
+            
             Button {
-                
+                viewModel.handleSend()
             } label: {
                 Text("Send")
                     .foregroundColor(.white)
