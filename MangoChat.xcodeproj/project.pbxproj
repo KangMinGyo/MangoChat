@@ -13,6 +13,7 @@
 		8C4480A729B225CE003285D1 /* NewMessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4480A629B225CE003285D1 /* NewMessageViewModel.swift */; };
 		8C4480A929B3861D003285D1 /* ChatLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4480A829B3861D003285D1 /* ChatLogView.swift */; };
 		8C4480AB29B5B934003285D1 /* ChatLogViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4480AA29B5B934003285D1 /* ChatLogViewModel.swift */; };
+		8C4480AD29B5D78A003285D1 /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4480AC29B5D78A003285D1 /* ChatMessage.swift */; };
 		8CA144A129AF23AC0076B0A7 /* MangoChatApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA144A029AF23AC0076B0A7 /* MangoChatApp.swift */; };
 		8CA144A329AF23AC0076B0A7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA144A229AF23AC0076B0A7 /* ContentView.swift */; };
 		8CA144A529AF23AF0076B0A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CA144A429AF23AF0076B0A7 /* Assets.xcassets */; };
@@ -35,6 +36,7 @@
 		8C4480A629B225CE003285D1 /* NewMessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessageViewModel.swift; sourceTree = "<group>"; };
 		8C4480A829B3861D003285D1 /* ChatLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLogView.swift; sourceTree = "<group>"; };
 		8C4480AA29B5B934003285D1 /* ChatLogViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLogViewModel.swift; sourceTree = "<group>"; };
+		8C4480AC29B5D78A003285D1 /* ChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
 		8CA1449D29AF23AC0076B0A7 /* MangoChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MangoChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CA144A029AF23AC0076B0A7 /* MangoChatApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangoChatApp.swift; sourceTree = "<group>"; };
 		8CA144A229AF23AC0076B0A7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 			isa = PBXGroup;
 			children = (
 				8C44809F29B1C82D003285D1 /* ChatUser.swift */,
+				8C4480AC29B5D78A003285D1 /* ChatMessage.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -231,6 +234,7 @@
 				8C4480A729B225CE003285D1 /* NewMessageViewModel.swift in Sources */,
 				8C4480A929B3861D003285D1 /* ChatLogView.swift in Sources */,
 				8CA144C129AF89AE0076B0A7 /* ImagePicker.swift in Sources */,
+				8C4480AD29B5D78A003285D1 /* ChatMessage.swift in Sources */,
 				8CA144A329AF23AC0076B0A7 /* ContentView.swift in Sources */,
 				8CA144A129AF23AC0076B0A7 /* MangoChatApp.swift in Sources */,
 				8CA144CC29B09EFC0076B0A7 /* MainMessagesView.swift in Sources */,

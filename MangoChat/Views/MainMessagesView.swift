@@ -10,6 +10,7 @@ import SDWebImageSwiftUI
 
 struct MainMessagesView: View {
     
+    @State var chatUser: ChatUser?
     @EnvironmentObject private var viewModel: MainMessagesViewModel
     
     var body: some View {
@@ -20,8 +21,8 @@ struct MainMessagesView: View {
                 messageView
                 
                 NavigationLink("", isActive: $viewModel.shouldNavigateToChatLogView) {
-                    ChatLogView(chatUser: viewModel.chatUser)
-                        .environmentObject(ChatLogViewModel(chatUser: nil))
+                    ChatLogView(chatUser: self.chatUser)
+                        .environmentObject(ChatLogViewModel(chatUser: viewModel.chatUser))
                 }
             }
             .overlay(
@@ -161,7 +162,7 @@ extension MainMessagesView {
                 .environmentObject(NewMessageViewModel(didSelectNewUser: { user in
                     print(user.email)
                     self.viewModel.shouldNavigateToChatLogView.toggle()
-                    viewModel.chatUser = user // ?
+                    self.chatUser = user // ?
                 }))
         }
     }

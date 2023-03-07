@@ -47,8 +47,6 @@ extension ChatLogView {
                 .foregroundColor(Color(.darkGray))
             ZStack {
                 TextField("Discription", text: $viewModel.chatText)
-//                TextEditor(text: $chatText)
-//                    .opacity($chatText.isEmpty ? 0.5 : 1)
             }
             .frame(height: 40)
             
@@ -69,18 +67,37 @@ extension ChatLogView {
     
     private var messagesView: some View {
         ScrollView {
-            ForEach(0..<20) { num in
-                HStack {
-                    Spacer()
-                    HStack {
-                        Text("FAKE MESSAGE FOR NOW")
+            ForEach(viewModel.chatMessage) { message in
+                VStack {
+                    if message.fromID == FirebaseManager.shared.auth.currentUser?.uid {
+                        HStack {
+                            Spacer()
+                            HStack {
+                                Text(message.text)
+                                    .foregroundColor(.white)
+                            }
+                            .padding()
+                            .background(.blue)
+                            .cornerRadius(16)
+                        }
+                        .padding(.horizontal)
+                        .padding(.top, 8)
+                    } else {
+                        HStack {
+                            HStack {
+                                Text(message.text)
+                                    .foregroundColor(Color.black)
+                            }
+                            .padding()
+                            .background(Color.white)
+                            .cornerRadius(16)
+                            Spacer()
+                        }
                     }
-                    .padding()
-                    .background(.blue)
-                    .cornerRadius(16)
                 }
                 .padding(.horizontal)
                 .padding(.top, 8)
+
             }
             HStack { Spacer() }
         }
