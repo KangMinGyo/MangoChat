@@ -14,6 +14,7 @@ class ChatLogViewModel: ObservableObject {
     @Published var errorMessage = ""
     
     @Published var chatMessage = [ChatMessage]()
+    @Published var emptyScrollToString = "Empty"
     
     let chatUser: ChatUser?
     
@@ -45,6 +46,10 @@ class ChatLogViewModel: ObservableObject {
                         self.chatMessage.append(.init(documentID: change.document.documentID, data: data))
                     }
                 })
+                
+                DispatchQueue.main.async {
+                    self.count += 1
+                }
             }
     }
     
@@ -71,6 +76,7 @@ class ChatLogViewModel: ObservableObject {
             }
             print("Success send message")
             self.chatText = ""
+            self.count += 1
         }
         
         let recipientMessageDocument = FirebaseManager.shared.fireStore.collection("messages")
@@ -87,5 +93,8 @@ class ChatLogViewModel: ObservableObject {
             print("Success saved message")
         }
     }
+    
+    @Published var count = 0
+    
 }
 
