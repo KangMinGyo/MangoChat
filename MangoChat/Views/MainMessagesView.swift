@@ -127,13 +127,14 @@ extension MainMessagesView {
                                 Text(recentMessage.email)
                                     .font(.system(size: 16, weight: .bold))
                                     .foregroundColor(.black)
+                                    .multilineTextAlignment(.leading)
                                 Text(recentMessage.text)
                                     .font(.system(size: 14))
                                     .foregroundColor(Color(.darkGray))
                                     .multilineTextAlignment(.leading)
                             }
                             Spacer()
-                            Text("22d") //시간
+                            Text(recentMessage.timestamp.description)
                                 .font(.system(size: 14, weight: .semibold))
                         }
                     }
