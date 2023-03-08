@@ -7,6 +7,8 @@
 
 import Foundation
 import SwiftUI
+import Firebase
+import FirebaseFirestoreSwift
 
 class MainMessagesViewModel: ObservableObject {
     
@@ -23,6 +25,44 @@ class MainMessagesViewModel: ObservableObject {
             self.isUserCurrentlyLoggedOut = FirebaseManager.shared.auth.currentUser?.uid == nil
         }
         fetchCurrentUser()
+        
+        fetchRecentMessages()
+    }
+    
+    @Published var recentMessages = [RecentMessage]()
+    
+    private func fetchRecentMessages() {
+        guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return }
+        
+        FirebaseManager.shared.fireStore
+            .collection("recent_messages")
+            .document(uid)
+            .collection("messages")
+            .order(by: "timestamp")
+            .addSnapshotListener { querySnapshot, err in
+                if let err = err {
+                    self.errorMessage = "Failed to listen for recent messages: \(err)"
+                    print(err)
+                    return
+                }
+                
+                querySnapshot?.documentChanges.forEach({ change in
+                    let docID = change.document.documentID
+                    
+                    if let index = self.recentMessages.firstIndex(where: { rm in
+                        return rm.id == docID
+                    }) {
+                        self.recentMessages.remove(at: index)
+                    }
+                    
+                    do {
+                        let rm = try change.document.data(as: RecentMessage.self)
+                        self.recentMessages.insert(rm, at: 0)
+                    } catch {
+                        print(error)
+                    }
+                })
+            }
     }
     
     func fetchCurrentUser() {

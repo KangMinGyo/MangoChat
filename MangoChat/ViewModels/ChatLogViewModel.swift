@@ -75,6 +75,9 @@ class ChatLogViewModel: ObservableObject {
                 return
             }
             print("Success send message")
+            
+            self.persistRecentMessage()
+            
             self.chatText = ""
             self.count += 1
         }
@@ -92,6 +95,39 @@ class ChatLogViewModel: ObservableObject {
             }
             print("Success saved message")
         }
+    }
+    
+    private func persistRecentMessage() {
+        guard let chatUser = chatUser else { return }
+        guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return }
+        guard let toID = self.chatUser?.uid else { return }
+        
+        let document = FirebaseManager.shared.fireStore
+            .collection("recent_messages")
+            .document(uid)
+            .collection("messages")
+            .document(toID)
+        
+        let data = [
+            FirebaseConstants.timestamp: Timestamp(),
+            FirebaseConstants.text: self.chatText,
+            FirebaseConstants.fromID: uid,
+            FirebaseConstants.toID: toID,
+            FirebaseConstants.profileImageURL: chatUser.profileImageURL,
+            FirebaseConstants.email: chatUser.email
+            
+        ] as [String : Any]
+        
+        
+        
+        document.setData(data) { err in
+            if let err = err {
+                self.errorMessage = "Failed to save recent message: \(err)"
+                print("Failed to save recent message: \(err)")
+                return
+            }
+        }
+        
     }
     
     @Published var count = 0

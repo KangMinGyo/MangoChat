@@ -20,6 +20,7 @@ struct ChatLogView: View {
     var body: some View {
         ZStack {
             messagesView
+                .padding(.bottom, 60)
             Text(viewModel.errorMessage)
             VStack {
                 Spacer()

@@ -108,23 +108,29 @@ extension MainMessagesView {
     
     private var messageView: some View {
         ScrollView {
-            ForEach(0..<10, id: \.self) { num in
+            ForEach(viewModel.recentMessages) { recentMessage in
                 VStack{
                     NavigationLink {
-                        Text("Destination\(num)")
+                        Text("Destination")
                     } label: {
                         HStack(spacing: 16) {
-                            Image(systemName: "person.fill")
-                                .font(.system(size: 32))
-                                .padding(4)
-                                .overlay(RoundedRectangle(cornerRadius: 20)
+                            WebImage(url: URL(string: recentMessage.profileImageURL))
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: 50, height: 50)
+                                .clipped()
+                                .cornerRadius(25)
+                                .shadow(radius: 5)
+                                .overlay(RoundedRectangle(cornerRadius: 25)
                                     .stroke(Color.gray, lineWidth: 1))
-                            VStack(alignment: .leading) {
-                                Text("UserName")
+                            VStack(alignment: .leading, spacing: 8) {
+                                Text(recentMessage.email)
                                     .font(.system(size: 16, weight: .bold))
-                                Text("Message sent to user")
+                                    .foregroundColor(.black)
+                                Text(recentMessage.text)
                                     .font(.system(size: 14))
-                                    .foregroundColor(Color(.lightGray))
+                                    .foregroundColor(Color(.darkGray))
+                                    .multilineTextAlignment(.leading)
                             }
                             Spacer()
                             Text("22d") //시간
