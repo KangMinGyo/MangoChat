@@ -59,7 +59,7 @@ extension MainMessagesView {
                     .stroke(Color.gray, lineWidth: 1))
             
             VStack(alignment: .leading, spacing: 4) {
-                let email = viewModel.chatUser?.email.replacingOccurrences(of: "@gmail.com", with: "") ?? ""
+                let email = viewModel.chatUser?.email.components(separatedBy: "@").first ?? ""
                 Text("\(email)")
                     .font(.system(size: 24, weight: .bold))
                 HStack(spacing:4) {
@@ -124,7 +124,7 @@ extension MainMessagesView {
                                 .overlay(RoundedRectangle(cornerRadius: 25)
                                     .stroke(Color.gray, lineWidth: 1))
                             VStack(alignment: .leading, spacing: 8) {
-                                Text(recentMessage.email)
+                                Text(recentMessage.userName)
                                     .font(.system(size: 16, weight: .bold))
                                     .foregroundColor(.black)
                                     .multilineTextAlignment(.leading)
@@ -134,7 +134,7 @@ extension MainMessagesView {
                                     .multilineTextAlignment(.leading)
                             }
                             Spacer()
-                            Text(recentMessage.timestamp.description)
+                            Text(recentMessage.time)
                                 .font(.system(size: 14, weight: .semibold))
                         }
                     }

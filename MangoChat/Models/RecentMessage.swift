@@ -16,4 +16,14 @@ struct RecentMessage: Codable, Identifiable {
     let fromID, toID: String
     let email, profileImageURL: String
     let timestamp: Date
+    
+    var userName: String {
+        email.components(separatedBy: "@").first ?? email
+    }
+    
+    var time: String {
+        let formatter = RelativeDateTimeFormatter()
+        formatter.unitsStyle = .abbreviated
+        return formatter.localizedString(for: timestamp, relativeTo: Date())
+    }
 }

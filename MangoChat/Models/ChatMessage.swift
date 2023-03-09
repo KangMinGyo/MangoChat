@@ -7,11 +7,12 @@
 
 import Foundation
 import Firebase
+import FirebaseFirestoreSwift
 
 struct ChatMessage: Identifiable {
     
     var id: String { documentID }
-    
+//    @DocumentID var id: String?
     let documentID: String
     let fromID: String
     let toID: String
