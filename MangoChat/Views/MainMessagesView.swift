@@ -12,7 +12,6 @@ struct MainMessagesView: View {
     
     @State var chatUser: ChatUser?
     @EnvironmentObject private var viewModel: MainMessagesViewModel
-//    private var chatLogViewModel = ChatLogViewModel(chatUser: nil)
     
     var body: some View {
         NavigationView {
