@@ -31,13 +31,3 @@ struct ChatMessage: Identifiable {
         self.email = data[FirebaseConstants.email] as? String ?? ""
     }
 }
-
-struct FirebaseConstants {
-    static let fromID = "fromID"
-    static let toID = "toID"
-    static let text = "text"
-    static let email = "email"
-    static let timestamp = "timestamp"
-    static let profileImageURL = "profileImageURL"
-    
-}

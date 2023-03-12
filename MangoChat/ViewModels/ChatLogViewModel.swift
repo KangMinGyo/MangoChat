@@ -16,7 +16,7 @@ class ChatLogViewModel: ObservableObject {
     @Published var chatMessage = [ChatMessage]()
     @Published var emptyScrollToString = "Empty"
     
-    let chatUser: ChatUser?
+    var chatUser: ChatUser?
     
     init(chatUser: ChatUser?) {
         self.chatUser = chatUser
@@ -24,11 +24,13 @@ class ChatLogViewModel: ObservableObject {
         fetchMessages()
     }
     
-    private func fetchMessages() {
+    var firestoreListener: ListenerRegistration?
+    
+    func fetchMessages() {
         guard let fromID = FirebaseManager.shared.auth.currentUser?.uid else { return }
         guard let toID = chatUser?.uid else { return }
         
-        FirebaseManager.shared.fireStore
+        firestoreListener = FirebaseManager.shared.fireStore
             .collection("messages")
             .document(fromID)
             .collection(toID)
@@ -44,6 +46,7 @@ class ChatLogViewModel: ObservableObject {
                     if change.type == .added {
                         let data = change.document.data()
                         self.chatMessage.append(.init(documentID: change.document.documentID, data: data))
+                        print("Appending chatMessage in ChatLogView: \(Date())")
                     }
                 })
                 

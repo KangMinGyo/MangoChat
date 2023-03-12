@@ -11,7 +11,7 @@ struct ChatLogView: View {
     
     @ObservedObject var viewModel: ChatLogViewModel
     let chatUser: ChatUser?
-    
+
     init(chatUser: ChatUser?) {
         self.chatUser = chatUser
         self.viewModel = .init(chatUser: chatUser)
@@ -28,8 +28,11 @@ struct ChatLogView: View {
                     .background(.white)
             }
         }
-        .navigationTitle(chatUser?.email ?? "")
-            .navigationBarTitleDisplayMode(.inline)
+        .navigationTitle(viewModel.chatUser?.email ?? "")
+        .navigationBarTitleDisplayMode(.inline)
+        .onDisappear {
+            viewModel.firestoreListener?.remove()
+        }
     }
 }
 
@@ -42,10 +45,7 @@ struct ChatLogView_Previews: PreviewProvider {
 
 extension ChatLogView {
     private var chatBottomBar: some View {
-        HStack(spacing: 16) {
-            Image(systemName: "photo.on.rectangle")
-                .font(.system(size: 24))
-                .foregroundColor(Color(.darkGray))
+        HStack(spacing: 16) {   
             ZStack {
                 TextField("Discription", text: $viewModel.chatText)
             }

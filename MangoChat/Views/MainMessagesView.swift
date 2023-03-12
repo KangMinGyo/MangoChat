@@ -12,6 +12,7 @@ struct MainMessagesView: View {
     
     @State var chatUser: ChatUser?
     @EnvironmentObject private var viewModel: MainMessagesViewModel
+//    private var chatLogViewModel = ChatLogViewModel(chatUser: nil)
     
     var body: some View {
         NavigationView {
@@ -102,6 +103,7 @@ extension MainMessagesView {
                 .environmentObject(LoginViewModel(didCompleteLoginProcess: {
                     self.viewModel.isUserCurrentlyLoggedOut = false
                     self.viewModel.fetchCurrentUser()
+                    self.viewModel.fetchRecentMessages()
                 }))
         }
     }
@@ -110,8 +112,10 @@ extension MainMessagesView {
         ScrollView {
             ForEach(viewModel.recentMessages) { recentMessage in
                 VStack{
-                    NavigationLink {
-                        Text("Destination")
+                    Button {
+                        let uid = FirebaseManager.shared.auth.currentUser?.uid == recentMessage.fromID ? recentMessage.toID : recentMessage.fromID
+                        self.chatUser = .init(data: [FirebaseConstants.email: recentMessage.email, FirebaseConstants.profileImageURL: recentMessage.profileImageURL, FirebaseConstants.uid: uid])
+                        viewModel.shouldNavigateToChatLogView.toggle()
                     } label: {
                         HStack(spacing: 16) {
                             WebImage(url: URL(string: recentMessage.profileImageURL))
@@ -136,6 +140,7 @@ extension MainMessagesView {
                             Spacer()
                             Text(recentMessage.time)
                                 .font(.system(size: 14, weight: .semibold))
+                                .foregroundColor(Color(UIColor.systemGray))
                         }
                     }
                     Divider()
@@ -167,9 +172,9 @@ extension MainMessagesView {
         .fullScreenCover(isPresented: $viewModel.shouldShowNewMessageScreen) {
             NewMessageView()
                 .environmentObject(NewMessageViewModel(didSelectNewUser: { user in
-                    print(user.email)
+                    print("fullScreen: \(user.email)")
                     self.viewModel.shouldNavigateToChatLogView.toggle()
-                    self.chatUser = user // ?
+                    self.chatUser = user
                 }))
         }
     }
